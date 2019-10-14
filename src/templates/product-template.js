@@ -1,27 +1,24 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-
-import Layout from "../components/layout"
+import Button from "../components/button.js"
 
 const ProductTemplate = ({ data: { contentfulProduct } }) => (
-  <Layout>
-    <div style={{ marginLeft: "0 auto", width: "100%", textAlign: "center" }}>
-      {/* ProductInfo  */}
-      <h2>
-        {contentfulProduct.name} -{" "}
-        <span style={{ color: "#ccc" }}>
-          Added on {contentfulProduct.createdAt}
-        </span>
-      </h2>
-      <h4>${contentfulProduct.price}</h4>
-      <p>{contentfulProduct.description}</p>
-      <Img
-        style={{ margin: "0 auto", maxWidth: 600 }}
-        fluid={contentfulProduct.image.fluid}
-      />
-    </div>
-  </Layout>
+  <div style={{ marginLeft: "0 auto", width: "100%", textAlign: "center" }}>
+    <h2>
+      {contentfulProduct.name} -{" "}
+      <span style={{ color: "#ccc" }}>
+        Added on {contentfulProduct.createdAt}
+      </span>
+    </h2>
+    <h4>${contentfulProduct.price}</h4>
+    <p>{contentfulProduct.description}</p>
+    <Img
+      style={{ margin: "0 auto", maxWidth: 600 }}
+      fluid={contentfulProduct.image.fluid}
+    />
+    <Button>Add to Bag</Button>
+  </div>
 )
 
 export const query = graphql`
