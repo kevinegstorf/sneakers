@@ -47,7 +47,10 @@ const Products = ({
               </span>
             </h3>
           </Link>
-          <Img style={{ maxWidth: 400 }} fluid={product.image.fluid} />
+          <Img
+            style={{ maxWidth: 400, transform: "rotate(-33deg)" }}
+            fluid={product.image.fluid}
+          />
           <FaLongArrowAltRight />
         </div>
       )
