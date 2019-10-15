@@ -1,5 +1,4 @@
 - add more products to cms
-- add footer nav
 - add manifest for PWA
 - wrap up Products page
 - research for homepage
@@ -10,6 +9,8 @@
 * clean up boilerplate
 * persist customers in node bd
 * persist order in node db
+
+<del> add footer nav</del>-
 
 - <del>add contentful</del>
 - <del>add styled components</del>

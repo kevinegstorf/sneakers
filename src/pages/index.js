@@ -8,6 +8,7 @@ import "react-animated-slider/build/horizontal.css"
 
 import Layout from "../components/layout"
 import BottomNav from "../components/bottomNav"
+import ProductCard from "../components/productCard"
 
 const BrandSelector = styled.div`
   font-family: "Josefin Sans";
@@ -20,6 +21,11 @@ const VerticalTextWrapper = styled.div`
   left: -5em;
 `
 
+const FlexWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
 const Products = ({
   data: {
     allContentfulProduct: { edges },
@@ -29,30 +35,14 @@ const Products = ({
     return edges.map(({ node: product }) => {
       return (
         <div key={product.id}>
-          <Link
-            to={`/products/${product.slug}`}
-            style={{ textDecoration: "none", color: "#551a8b" }}
-          >
-            <h3>
-              Nike
-              <br />
-              {product.name} · <br />
-              <span
-                style={{
-                  fontSize: "1.2rem",
-                  fontWeight: 300,
-                  color: "#f60",
-                }}
-              >
-                ${product.price}
-              </span>
-            </h3>
-          </Link>
-          <Img
-            style={{ maxWidth: 270, transform: "rotate(-33deg)" }}
-            fluid={product.image.fluid}
+          <ProductCard
+            slug={product.slug}
+            name={product.name}
+            price={product.price}
+            image={product.image}
+            color={product.backgroundColor}
+            brand={product.brands.name}
           />
-          <FaLongArrowAltRight />
         </div>
       )
     })
@@ -65,9 +55,10 @@ const Products = ({
         <Slider>{renderProducts()}</Slider>
       </div>
       <section>
-        <div>
+        <FlexWrapper>
           <h3>More</h3>
-        </div>
+          <FaLongArrowAltRight />
+        </FlexWrapper>
         <BottomNav />
       </section>
     </Layout>
@@ -84,10 +75,14 @@ export const query = graphql`
           name
           price
           private
+          backgroundColor
           image {
             fluid(maxWidth: 400) {
               ...GatsbyContentfulFluid_tracedSVG
             }
+          }
+          brands {
+            name
           }
         }
       }
